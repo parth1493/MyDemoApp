@@ -97,4 +97,5 @@ public class ValidationClass {
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         return (networkInfo != null && networkInfo.isConnected());
     }
+
 }

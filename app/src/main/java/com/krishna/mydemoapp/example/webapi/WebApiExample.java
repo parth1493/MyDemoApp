@@ -1,10 +1,12 @@
 package com.krishna.mydemoapp.example.webapi;
 
 import android.app.ProgressDialog;
+import android.app.usage.NetworkStatsManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -35,16 +37,31 @@ import static java.security.AccessController.getContext;
 public class WebApiExample extends AppCompatActivity {
 
     private String TAG = WebApiExample.class.getSimpleName();
-    OkHttpClient client = new OkHttpClient();
     private ProgressDialog pDialog;
     String httpString = "https://api.androidhive.info/contacts/";
     private BroadcastReceiver receiver;
+    int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_api_example);
+        registerReceiver();
 
-       // new GetContacts().execute();
+    }
+
+    private void registerReceiver() {
+        Log.d("Check internet","User partiicpant register");
+        // register connection status listener
+        //  MyApplication.getInstance().setConnectivityListener(this);
+        IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                setStatus();
+
+            }
+        };
+        this.registerReceiver(receiver, intentFilter);
     }
 
 
@@ -77,39 +94,52 @@ public class WebApiExample extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            try {
-                String response = example.run(httpString);
-                Log.d("Json-2", "doInBackground() called with: " + "params = [" + response + "]");
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                String response = example.run(httpString);
+//                Log.d("Json-2", "doInBackground() called with: " + "params = [" + response + "]");
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
 
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
+            if (pDialog.isShowing()==true){
+                Log.d("Helo","Hello");
+                pDialog.dismiss();
+                pDialog.dismiss();
+            }
             super.onPostExecute(result);
             // Dismiss the progress dialog
-            if (pDialog.isShowing())
-                pDialog.dismiss();
+
         }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.unregisterReceiver(receiver);
     }
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("Check internet","User partiicpant register");
-        // register connection status listener
-        //  MyApplication.getInstance().setConnectivityListener(this);
-        IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
-        receiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                setStatus();
-            }
-        };
-        this.registerReceiver(receiver, intentFilter);
+//        Log.d("Check internet","User partiicpant register");
+//        // register connection status listener
+//        //  MyApplication.getInstance().setConnectivityListener(this);
+//        IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+//        receiver = new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//
+//                i++;
+//                Log.d("Hello",i+"");
+//                setStatus();
+//
+//            }
+//        };
+//        this.registerReceiver(receiver, intentFilter);
     }
     public void setStatus() {
 
