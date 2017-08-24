@@ -112,14 +112,12 @@ public class WebApiExample extends AppCompatActivity {
         this.registerReceiver(receiver, intentFilter);
     }
     public void setStatus() {
-        // tvStatus.setText("STATUS: " + Utils.isNetworkConnected(this));
+
         if(ValidationClass.checkOnline(getApplicationContext())==true){
-            //internetCheck.setVisibility(View.INVISIBLE);
-            //relative_layout_whatyouwanttodotoday.setVisibility(View.VISIBLE);
+            Toast.makeText(getApplicationContext(),"wifi/data Connected",Toast.LENGTH_SHORT).show();
             new GetContacts().execute();
         }else{
-            //internetCheck.setVisibility(View.VISIBLE);
-            //relative_layout_whatyouwanttodotoday.setVisibility(View.INVISIBLE);
+            Toast.makeText(getApplicationContext(),"wifi/data Not Connected",Toast.LENGTH_SHORT).show();
         }
     }
 }
