@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.krishna.mydemoapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,7 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".example.moshi.MoshiExample"></activity>
+        <activity android:name=".example.moshi.MoshiExample" />
+        <activity android:name=".example.webapi.WebApiExample"></activity>
     </application>
 
 </manifest>

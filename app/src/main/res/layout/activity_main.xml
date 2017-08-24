@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.krishna.mydemoapp.MainActivity">
     <LinearLayout
+        android:orientation="vertical"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -21,6 +22,20 @@
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:text="Moshi Example"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:id="@+id/web_api_exmaple"
+                android:gravity="center"
+                android:background="@drawable/textview_background"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:text="Web api example"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
