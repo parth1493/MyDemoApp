@@ -108,7 +108,6 @@ public class WebApiExample extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             if (pDialog.isShowing()==true){
-                Log.d("Helo","Hello");
                 pDialog.dismiss();
                 pDialog.dismiss();
             }
@@ -125,21 +124,6 @@ public class WebApiExample extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        Log.d("Check internet","User partiicpant register");
-//        // register connection status listener
-//        //  MyApplication.getInstance().setConnectivityListener(this);
-//        IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
-//        receiver = new BroadcastReceiver() {
-//            @Override
-//            public void onReceive(Context context, Intent intent) {
-//
-//                i++;
-//                Log.d("Hello",i+"");
-//                setStatus();
-//
-//            }
-//        };
-//        this.registerReceiver(receiver, intentFilter);
     }
     public void setStatus() {
 

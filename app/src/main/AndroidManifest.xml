@@ -18,7 +18,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".example.moshi.MoshiExample" />
         <activity android:name=".example.webapi.WebApiExample"></activity>
     </application>
 
