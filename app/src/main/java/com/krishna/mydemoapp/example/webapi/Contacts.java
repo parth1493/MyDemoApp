@@ -7,5 +7,5 @@ import java.util.List;
  */
 
 public class Contacts {
-   private List <Person> personList;
+   private List <Person> contacts;
 }
