@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.krishna.mydemoapp.R;
 import com.krishna.mydemoapp.example.utill.ValidationClass;
+import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.Moshi;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -89,7 +91,21 @@ public class WebApiExample extends AppCompatActivity {
             GetDataExample example = new GetDataExample();
             try {
                 String response = example.run(httpString);
-                Log.d("Json", "doInBackground() called with: " + "params = [" + response + "]");
+
+                Moshi moshi = new Moshi.Builder().build();
+
+                JsonAdapter<Contacts> personAdapter = moshi.adapter(Contacts.class);
+                Contacts person = null;
+                try{
+//                JSONObject jsnobject = new JSONObject(response);
+//                JSONArray jsonArray = jsnobject.getJSONArray("contacts");
+//                JSONObject explrObject = jsonArray.getJSONObject(1);
+                person = personAdapter.fromJson(response);
+                }catch (IOException io){
+
+                }
+                
+                Log.d("Json", "doInBackground() called with: " + "params = [" + personAdapter.toJson(person) + "]");
 
             } catch (IOException e) {
                 e.printStackTrace();

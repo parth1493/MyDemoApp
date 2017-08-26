@@ -6,4 +6,10 @@ package com.krishna.mydemoapp.example.webapi;
 
 public class Person {
 
+    private String id;
+    private String name;
+    private String email;
+    private String address;
+    private String gender;
+    private Phone phone;
 }
