@@ -8,4 +8,19 @@ import java.util.List;
 
 public class Contacts {
    private List <Person> contacts;
+
+   public List<Person> getContacts() {
+      return contacts;
+   }
+
+   public void setContacts(List<Person> contacts) {
+      this.contacts = contacts;
+   }
+
+   public Contacts(List<Person> contacts) {
+
+      this.contacts = contacts;
+   }
+
+
 }

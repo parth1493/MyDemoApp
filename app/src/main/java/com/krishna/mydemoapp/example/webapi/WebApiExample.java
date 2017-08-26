@@ -12,9 +12,12 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.ListViewCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
@@ -28,6 +31,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import okhttp3.OkHttpClient;
@@ -38,17 +43,24 @@ import static java.security.AccessController.getContext;
 
 public class WebApiExample extends AppCompatActivity {
 
+    private ListView listView;
     private String TAG = WebApiExample.class.getSimpleName();
     private ProgressDialog pDialog;
     String httpString = "https://api.androidhive.info/contacts/";
     private BroadcastReceiver receiver;
-    int i = 0;
+    ArrayList<String> myList;
+    ArrayList<Contacts> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_api_example);
+        xmlBlind();
         registerReceiver();
 
+    }
+
+    private void xmlBlind() {
+        listView = (ListView)findViewById(R.id.list);
     }
 
     private void registerReceiver() {
@@ -95,17 +107,18 @@ public class WebApiExample extends AppCompatActivity {
                 Moshi moshi = new Moshi.Builder().build();
 
                 JsonAdapter<Contacts> personAdapter = moshi.adapter(Contacts.class);
-                Contacts person = null;
+                Contacts contacts = null;
+                myList = new ArrayList<>();
                 try{
-//                JSONObject jsnobject = new JSONObject(response);
-//                JSONArray jsonArray = jsnobject.getJSONArray("contacts");
-//                JSONObject explrObject = jsonArray.getJSONObject(1);
-                person = personAdapter.fromJson(response);
+                    contacts = personAdapter.fromJson(response);
                 }catch (IOException io){
 
                 }
-                
-                Log.d("Json", "doInBackground() called with: " + "params = [" + personAdapter.toJson(person) + "]");
+                Log.d("Json", "doInBackground() called with: " + "params = [" + personAdapter.toJson(contacts) + "]");
+                for(Person p:contacts.getContacts()){
+                    myList.add("id: " +p.getId() + "\nName: "+ p.getName());
+                }
+                list = new ArrayList<>(Arrays.asList(contacts));
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -126,6 +139,7 @@ public class WebApiExample extends AppCompatActivity {
             if (pDialog.isShowing()==true){
                 pDialog.dismiss();
                 pDialog.dismiss();
+                setViewList();
             }
             super.onPostExecute(result);
             // Dismiss the progress dialog
@@ -149,5 +163,9 @@ public class WebApiExample extends AppCompatActivity {
         }else{
             Toast.makeText(getApplicationContext(),"wifi/data Not Connected",Toast.LENGTH_SHORT).show();
         }
+    }
+    public void setViewList(){
+        listView.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,myList));
+
     }
 }
