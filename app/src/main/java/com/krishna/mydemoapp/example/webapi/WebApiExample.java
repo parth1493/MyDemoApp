@@ -1,12 +1,11 @@
 package com.krishna.mydemoapp.example.webapi;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
-import android.app.usage.NetworkStatsManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -24,16 +23,20 @@ import android.widget.Toast;
 import com.krishna.mydemoapp.R;
 import com.krishna.mydemoapp.example.utill.ValidationClass;
 import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.JsonReader;
 import com.squareup.moshi.Moshi;
+import com.squareup.moshi.Types;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -46,16 +49,87 @@ public class WebApiExample extends AppCompatActivity {
     private ListView listView;
     private String TAG = WebApiExample.class.getSimpleName();
     private ProgressDialog pDialog;
-    String httpString = "https://api.androidhive.info/contacts/";
+    //String httpString = "https://api.androidhive.info/contacts/";
+    String httpString = "https://api.friendngo.com/api/getActivities/";
+    String httpString2 = "https://api.friendngo.com/api/getNumberOfAvailableUsers/";
     private BroadcastReceiver receiver;
     ArrayList<String> myList;
-    ArrayList<Contacts> list;
+    String rs =
+            "  [\n" +
+            "    {\n" +
+            "      \"id\": 238,\n" +
+            "      \"activity_name\": \"Fin de Journée à Anticafé\",\n" +
+            "      \"creator_age\": 24,\n" +
+            "      \"creator_pk\": 301,\n" +
+            "      \"creator\": \"Gerry\",\n" +
+            "      \"status\": \"Resident\",\n" +
+            "      \"home_nationality\": \"Venezuela\",\n" +
+            "      \"home_city\": \"Montreal\",\n" +
+            "      \"max_users\": 100,\n" +
+            "      \"activity_time\": \"2017-08-26T22:00:00Z\",\n" +
+            "      \"activity_end_time\": \"2017-08-27T01:00:00Z\",\n" +
+            "      \"activity_type\": \"Eat In\",\n" +
+            "      \"activity_lon\": -73.5663989,\n" +
+            "      \"activity_lat\": 45.5067194,\n" +
+            "      \"category\": \"Social Activities\",\n" +
+            "      \"address\": \"294 Saint-Catherine St W, Montreal, QC H2X 2A1, Canada\",\n" +
+            "      \"description\": \"L'Anticafé c'est tout le contraire d'un café traditionnel... premièrement l'ambiance donne l'impression d'être dans un second chez soi puisque le décor chaleureux permet rapidement de s'approprier l'endroit comme si nous étions à la maison.  À l'Anticafé vous ne payez pas pour ce que vous consommer, car tout est gratuit et à volonté! En fait, nous vous demandons tout simplement de contribuer un petit montant pour le moment que vous passerez dans notre environnement. Le tarif en question est de 3$ pour la première heure et de 2$ pour les heures additionnelles, pour un maximum de 9$ par jour, quelle aubaine considérant que le café, le thé les biscuits, les fruits, le WIFI et plus encore est inclus dans ce prix!\",\n" +
+            "      \"additional_notes\": \".\",\n" +
+            "      \"points\": 1769,\n" +
+            "      \"picture\": \"https://friendngodjango-s3-bucket.s3.amazonaws.com/Images/Image-3698.jpg\",\n" +
+            "      \"attending\": [\n" +
+            "        {\n" +
+            "          \"id\": 344,\n" +
+            "          \"picture\": \"https://friendngodjango-s3-bucket.s3.amazonaws.com/Images/344-392-profileImage.jpg\",\n" +
+            "          \"first_name\": \"Emilie dC\",\n" +
+            "          \"languages\": [\n" +
+            "            {\n" +
+            "              \"name\": \"french\"\n" +
+            "            },\n" +
+            "            {\n" +
+            "              \"name\": \"english\"\n" +
+            "            },\n" +
+            "            {\n" +
+            "              \"name\": \"spanish\"\n" +
+            "            }\n" +
+            "          ]\n" +
+            "        },\n" +
+            "        {\n" +
+            "          \"id\": 301,\n" +
+            "          \"picture\": \"https://friendngodjango-s3-bucket.s3.amazonaws.com/Images/Image-3698.jpg\",\n" +
+            "          \"first_name\": \"Gerry\",\n" +
+            "          \"languages\": [\n" +
+            "            {\n" +
+            "              \"name\": \"Spanish\"\n" +
+            "            },\n" +
+            "            {\n" +
+            "              \"name\": \"English\"\n" +
+            "            },\n" +
+            "            {\n" +
+            "              \"name\": \"French\"\n" +
+            "            }\n" +
+            "          ]\n" +
+            "        }\n" +
+            "      ],\n" +
+            "      \"is_paid\": true,\n" +
+            "      \"event_picture\": \"https://friendngodjango-s3-bucket.s3.amazonaws.com/Images/Anti_cafe_event.jpg\",\n" +
+            "      \"requests_received\": [],\n" +
+            "      \"is_canceled\": false,\n" +
+            "      \"organization_logo\": \"https://friendngodjango-s3-bucket.s3.amazonaws.com/Images/Anticafe.jpg\",\n" +
+            "      \"organization_name\": \"Anticafé\",\n" +
+            "      \"organization_pk\": 25,\n" +
+            "      \"is_too_light\": false\n" +
+            "    }\n" +
+            "  ]";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_api_example);
         xmlBlind();
         registerReceiver();
+
 
     }
 
@@ -65,8 +139,8 @@ public class WebApiExample extends AppCompatActivity {
 
     private void registerReceiver() {
         Log.d("Check internet","User partiicpant register");
-        // register connection status listener
-        //  MyApplication.getInstance().setConnectivityListener(this);
+         //register connection status listener
+
         IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
         receiver = new BroadcastReceiver() {
             @Override
@@ -76,6 +150,7 @@ public class WebApiExample extends AppCompatActivity {
             }
         };
         this.registerReceiver(receiver, intentFilter);
+
     }
 
 
@@ -103,33 +178,35 @@ public class WebApiExample extends AppCompatActivity {
             GetDataExample example = new GetDataExample();
             try {
                 String response = example.run(httpString);
+                Log.d("Json", response );
 
                 Moshi moshi = new Moshi.Builder().build();
-
-                JsonAdapter<Contacts> personAdapter = moshi.adapter(Contacts.class);
-                Contacts contacts = null;
+                Type type = Types.newParameterizedType(List.class, Activities.class);
+                JsonAdapter<List<Activities>> activityListJsonAdapterAdapter = moshi.adapter(type);
+                List<Activities> activities = null;
                 myList = new ArrayList<>();
-                try{
-                    contacts = personAdapter.fromJson(response);
-                }catch (IOException io){
+                try {
+                    activities= activityListJsonAdapterAdapter.fromJson(response);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                for(Activities p:activities){
+                    myList.add("id: " +p.getId() + "\nName: "+ p.getActivity_name());
+                }
 
-                }
-                Log.d("Json", "doInBackground() called with: " + "params = [" + personAdapter.toJson(contacts) + "]");
-                for(Person p:contacts.getContacts()){
-                    myList.add("id: " +p.getId() + "\nName: "+ p.getName());
-                }
-                list = new ArrayList<>(Arrays.asList(contacts));
+                Log.d("Json", "doInBackground() called with: " + "params = [" + activities.get(0).getAttending().get(1).getFirst_name() + "]");
+
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-//            try {
-//                String response = example.run(httpString);
-//                Log.d("Json-2", "doInBackground() called with: " + "params = [" + response + "]");
-//
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                String response = example.run(httpString2);
+                Log.d("Json-2", "doInBackground() called with: " + "params = [" + response + "]");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             return null;
         }

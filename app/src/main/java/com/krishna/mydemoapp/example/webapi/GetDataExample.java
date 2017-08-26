@@ -20,7 +20,9 @@ public class GetDataExample {
     String run(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
+                .addHeader("Authorization","Token "+"c3bef47079359d85a228550fecc6a81f3a45c7ce")
                 .build();
+
 
         try (Response response = client.newCall(request).execute()) {
             return response.body().string();
