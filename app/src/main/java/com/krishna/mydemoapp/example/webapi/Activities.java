@@ -27,7 +27,7 @@ class Activities {
     private String address;
     private String description;
     private String additional_notes;
-    private String points;
+    private long points;
     private String picture;
     private List<Attending> attending;
     private Boolean is_paid;
@@ -37,9 +37,9 @@ class Activities {
     private String organization_logo;
     private String organization_name;
     private String organization_pk;
-    private boolean is_too_light;
+    private Boolean is_too_light;
 
-    public Activities(long id, String activity_name, int creator_age, long creator_pk, String creator, String status, String home_nationality, String home_city, long max_users, String activity_time, String activity_end_time, String activity_type, double activity_lon, double activity_lat, String category, String address, String description, String additional_notes, String points, String picture, List<Attending> attending, Boolean is_paid, String event_picture, List<RequestsReceived> requests_received, Boolean is_canceled, String organization_logo, String organization_name, String organization_pk, boolean is_too_light) {
+    public Activities(long id, String activity_name, int creator_age, long creator_pk, String creator, String status, String home_nationality, String home_city, long max_users, String activity_time, String activity_end_time, String activity_type, double activity_lon, double activity_lat, String category, String address, String description, String additional_notes, long points, String picture, List<Attending> attending, Boolean is_paid, String event_picture, List<RequestsReceived> requests_received, Boolean is_canceled, String organization_logo, String organization_name, String organization_pk, Boolean is_too_light) {
         this.id = id;
         this.activity_name = activity_name;
         this.creator_age = creator_age;
@@ -215,11 +215,11 @@ class Activities {
         this.additional_notes = additional_notes;
     }
 
-    public String getPoints() {
+    public long getPoints() {
         return points;
     }
 
-    public void setPoints(String points) {
+    public void setPoints(long points) {
         this.points = points;
     }
 
@@ -295,11 +295,11 @@ class Activities {
         this.organization_pk = organization_pk;
     }
 
-    public boolean getIs_too_light() {
+    public Boolean getIs_too_light() {
         return is_too_light;
     }
 
-    public void setIs_too_light(boolean is_too_light) {
+    public void setIs_too_light(Boolean is_too_light) {
         this.is_too_light = is_too_light;
     }
 }

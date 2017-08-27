@@ -54,6 +54,56 @@ public class WebApiExample extends AppCompatActivity {
     String httpString2 = "https://api.friendngo.com/api/getNumberOfAvailableUsers/";
     private BroadcastReceiver receiver;
     ArrayList<String> myList;
+    String rr = "  [\n" +
+            "    {\n" +
+            "        \"id\": 240,\n" +
+            "        \"activity_name\": \"hablamos español\",\n" +
+            "        \"creator_age\": 24,\n" +
+            "        \"creator_pk\": 301,\n" +
+            "        \"creator\": \"Gerry\",\n" +
+            "        \"status\": \"Resident\",\n" +
+            "        \"home_nationality\": \"Venezuela\",\n" +
+            "        \"home_city\": \"Montreal\",\n" +
+            "        \"max_users\": 20,\n" +
+            "        \"activity_time\": \"2017-08-27T22:00:00Z\",\n" +
+            "        \"activity_end_time\": \"2017-08-27T22:30:00Z\",\n" +
+            "        \"activity_type\": \"Other\",\n" +
+            "        \"activity_lon\": -73.566301,\n" +
+            "        \"activity_lat\": 45.5067062,\n" +
+            "        \"category\": \"Social Activities\",\n" +
+            "        \"address\": \"294 Rue Sainte-Catherine O, Montréal, QC H2X 2A1, Canada\",\n" +
+            "        \"description\": \"No Description\",\n" +
+            "        \"additional_notes\": \"None\",\n" +
+            "        \"points\": 1869,\n" +
+            "        \"picture\": \"https://friendngodjango-s3-bucket.s3.amazonaws.com/Images/Image-3698.jpg\",\n" +
+            "        \"attending\": [\n" +
+            "            {\n" +
+            "                \"id\": 301,\n" +
+            "                \"picture\": \"https://friendngodjango-s3-bucket.s3.amazonaws.com/Images/Image-3698.jpg\",\n" +
+            "                \"first_name\": \"Gerry\",\n" +
+            "                \"languages\": [\n" +
+            "                    {\n" +
+            "                        \"name\": \"Spanish\"\n" +
+            "                    },\n" +
+            "                    {\n" +
+            "                        \"name\": \"English\"\n" +
+            "                    },\n" +
+            "                    {\n" +
+            "                        \"name\": \"French\"\n" +
+            "                    }\n" +
+            "                ]\n" +
+            "            }\n" +
+            "        ],\n" +
+            "        \"is_paid\": false,\n" +
+            "        \"event_picture\": null,\n" +
+            "        \"requests_received\": [],\n" +
+            "        \"is_canceled\": false,\n" +
+            "        \"organization_logo\": null,\n" +
+            "        \"organization_name\": null,\n" +
+            "        \"organization_pk\": null,\n" +
+            "        \"is_too_light\": null\n" +
+            "    }\n" +
+            "  ]";
     String rs =
             "  [\n" +
             "    {\n" +
@@ -129,9 +179,7 @@ public class WebApiExample extends AppCompatActivity {
         setContentView(R.layout.activity_web_api_example);
         xmlBlind();
         registerReceiver();
-
-
-    }
+     }
 
     private void xmlBlind() {
         listView = (ListView)findViewById(R.id.list);
@@ -194,7 +242,8 @@ public class WebApiExample extends AppCompatActivity {
                     myList.add("id: " +p.getId() + "\nName: "+ p.getActivity_name());
                 }
 
-                Log.d("Json", "doInBackground() called with: " + "params = [" + activities.get(0).getAttending().get(1).getFirst_name() + "]");
+               // Log.d("Json", "doInBackground() called with: " + "params = [" + activities.get(0).getAttending().get(1).getFirst_name() + "]");
+                //Log.d("Json", "doInBackground() called with: " + "params = [" + activities.get(5)+ "]");
 
 
             } catch (IOException e) {
@@ -243,6 +292,5 @@ public class WebApiExample extends AppCompatActivity {
     }
     public void setViewList(){
         listView.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,myList));
-
     }
 }
