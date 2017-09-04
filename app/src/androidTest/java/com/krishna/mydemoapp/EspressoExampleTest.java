@@ -12,7 +12,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 /**
@@ -24,6 +27,11 @@ public class EspressoExampleTest {
     public ActivityTestRule<EspressoExample> activityActivityTestRule = new ActivityTestRule<EspressoExample>(EspressoExample.class);
     @Test
     public void shouldBeAbleToLaunchMainScreen(){
-        onView(withText("Hello")).check(ViewAssertions.matches(isDisplayed() ));
+        onView(withId(R.id.hello)).perform(click());
     }
+
+    //-open terminal
+    //-open uiautomatorviewer
+    //path- cd ~/Library/Android/sdk/tools
+
 }
