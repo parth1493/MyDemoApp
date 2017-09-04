@@ -9,7 +9,7 @@ import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ListViewCompat;
@@ -95,7 +95,7 @@ public class WebApiExample extends AppCompatActivity {
 
         }
 
-        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+
         @Override
         protected Void doInBackground(Void... arg0) {
 

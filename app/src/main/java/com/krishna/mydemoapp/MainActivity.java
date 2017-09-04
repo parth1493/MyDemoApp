@@ -5,10 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import com.krishna.mydemoapp.example.espresso.EspressoExample;
 import com.krishna.mydemoapp.example.webapi.WebApiExample;
 
 public class MainActivity extends AppCompatActivity {
     TextView webApiExample;
+    TextView espressoExmaple;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,9 +25,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        espressoExmaple.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), EspressoExample.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void xmlBinder() {
-        webApiExample = (TextView)findViewById(R.id.web_api_exmaple);
+        webApiExample = (TextView)findViewById(R.id.web_api_example);
+        espressoExmaple = (TextView)findViewById(R.id.espresso_example);
     }
 }
