@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".example.webapi.WebApiExample" />
-        <activity android:name=".example.espresso.EspressoExample"></activity>
+        <activity android:name=".example.espresso.EspressoExample" />
+        <activity android:name=".example.espresso.EspressoExampleSecondActivity"></activity>
     </application>
 
 </manifest>
