@@ -11,29 +11,27 @@ import android.widget.TextView;
 import com.krishna.mydemoapp.R;
 
 public class EspressoExample extends AppCompatActivity {
-    EditText firstName;
-    EditText secondName;
-    Button add;
+    TextView output;
+    Button newADD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_espresso_example);
-        xmlBind();
-        add.setOnClickListener(new View.OnClickListener() {
+        String stringXMl =  getIntent().getStringExtra("EspressTest");
+        Xmlbinder();
+        output.setText(stringXMl);
+        newADD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(EspressoExample.this,EspressoExampleSecondActivity.class);
-                intent.putExtra("EspressTest",firstName.getText().toString());
                 startActivity(intent);
             }
         });
     }
 
-    private void xmlBind() {
-        firstName = (EditText)findViewById(R.id.first_name);
 
-        secondName = (EditText)findViewById(R.id.second_name);
-
-        add = (Button)findViewById(R.id.add);
+    private void Xmlbinder() {
+        output = (TextView)findViewById(R.id.output);
+        newADD = (Button)findViewById(R.id.new_add);
     }
 }

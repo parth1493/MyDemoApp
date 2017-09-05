@@ -5,35 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.krishna.mydemoapp.example.espresso.EspressoExample">
+<Button
+    android:layout_alignParentTop="true"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:text="Add New"
+    android:id="@+id/new_add"/>
 
-
- <EditText
-     android:id="@+id/first_name"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_alignParentStart="true"
-     android:layout_alignParentTop="true"
-     android:ems="10"
-     android:inputType="textPersonName"
-     android:text="Name" />
-
- <EditText
-     android:id="@+id/second_name"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_alignParentStart="true"
-     android:layout_below="@+id/first_name"
-     android:ems="10"
-     android:inputType="textPersonName"
-     android:text="Name" />
-
- <Button
-     android:id="@+id/add"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_alignParentBottom="true"
-     android:layout_alignParentStart="true"
-     android:layout_marginBottom="158dp"
-     android:layout_marginStart="56dp"
-     android:text="Button" />
+ <TextView
+  android:id="@+id/output"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:text="TextView"
+  android:layout_centerInParent="true" />
 </RelativeLayout>

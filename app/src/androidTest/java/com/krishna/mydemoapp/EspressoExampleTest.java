@@ -24,11 +24,11 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 @RunWith(AndroidJUnit4.class)
 public class EspressoExampleTest {
     @Rule
-    public ActivityTestRule<EspressoExample> activityActivityTestRule = new ActivityTestRule<EspressoExample>(EspressoExample.class);
+    public ActivityTestRule<MainActivity> activityActivityTestRule = new ActivityTestRule<MainActivity>(MainActivity.class);
     @Test
     public void shouldBeAbleToLaunchMainScreen(){
-
-
+        onView(withId(R.id.espresso_example)).perform(click());
+        onView(withId(R.id.new_add)).perform(click());
         onView(withId(R.id.first_name)).perform(click());
         onView(withId(R.id.first_name)).perform(typeText("Foo"));
 
