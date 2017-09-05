@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.krishna.mydemoapp.MainActivity;
 import com.krishna.mydemoapp.R;
 
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ import java.util.List;
 public class EspressoExample extends AppCompatActivity {
 
     Button newADD;
-    private List<EspressoModel> list = new ArrayList<>();
+
     private RecyclerView recyclerView;
     private EspressoAdaptor mAdapter;
     @Override
@@ -27,11 +29,13 @@ public class EspressoExample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_espresso_example);
         String stringXMl =  getIntent().getStringExtra("EspressTest");
+        Log.d("Hello",MainActivity.list.size()+"");
         Xmlbinder();
         if(stringXMl != null){
-            EspressoModel espressoModel = new EspressoModel(stringXMl,stringXMl);
-            list.add(espressoModel);
+            EspressoModel espressoModel = new EspressoModel(stringXMl, stringXMl);
+            MainActivity.list.add(MainActivity.list.size(),espressoModel);
             mAdapter.notifyDataSetChanged();
+
         }
 
 
@@ -39,6 +43,7 @@ public class EspressoExample extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(EspressoExample.this,EspressoExampleSecondActivity.class);
+
                 startActivity(intent);
             }
         });
@@ -47,7 +52,7 @@ public class EspressoExample extends AppCompatActivity {
 
     private void Xmlbinder() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mAdapter = new EspressoAdaptor(list);
+        mAdapter = new EspressoAdaptor(MainActivity.list);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -7,11 +7,16 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.krishna.mydemoapp.example.espresso.EspressoExample;
+import com.krishna.mydemoapp.example.espresso.EspressoModel;
 import com.krishna.mydemoapp.example.webapi.WebApiExample;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     TextView webApiExample;
     TextView espressoExmaple;
+    public static List<EspressoModel> list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
