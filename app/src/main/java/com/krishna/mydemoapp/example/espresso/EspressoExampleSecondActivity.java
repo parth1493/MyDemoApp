@@ -26,7 +26,8 @@ public class EspressoExampleSecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(EspressoExampleSecondActivity.this,EspressoExample.class);
-                intent.putExtra("EspressTest",firstName.getText().toString());
+                intent.putExtra("firstName",firstName.getText().toString());
+                intent.putExtra("secondName",secondName.getText().toString());
                 startActivity(intent);
             }
         });

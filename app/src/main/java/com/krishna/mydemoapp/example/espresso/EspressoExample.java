@@ -28,11 +28,11 @@ public class EspressoExample extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_espresso_example);
-        String stringXMl =  getIntent().getStringExtra("EspressTest");
-        Log.d("Hello",MainActivity.list.size()+"");
+        String firstName =  getIntent().getStringExtra("firstName");
+        String secondName =  getIntent().getStringExtra("secondName");
         Xmlbinder();
-        if(stringXMl != null){
-            EspressoModel espressoModel = new EspressoModel(stringXMl, stringXMl);
+        if(firstName != null){
+            EspressoModel espressoModel = new EspressoModel(firstName, secondName);
             MainActivity.list.add(MainActivity.list.size(),espressoModel);
             mAdapter.notifyDataSetChanged();
 
