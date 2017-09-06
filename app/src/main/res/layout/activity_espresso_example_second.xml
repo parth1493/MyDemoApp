@@ -37,4 +37,18 @@
         android:layout_marginStart="56dp"
         android:text="Button" />
 
+
+
+    <TextView
+        android:id="@+id/simple_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/test_espresso"
+        android:gravity="center"
+        android:drawableLeft="@mipmap/ic_launcher_round"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="91dp"
+        android:layout_below="@+id/second_name"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>

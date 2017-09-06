@@ -21,6 +21,7 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static com.krishna.mydemoapp.TaskoMatchers.withCompoundDrawable;
 import static com.krishna.mydemoapp.TaskoMatchers.withTaskViewName;
 
 /**
@@ -33,6 +34,7 @@ public class EspressoExampleTest {
     @Test
     public void shouldBeAbleToLaunchMainScreen() throws InterruptedException {
         onView(withId(R.id.espresso_example)).perform(click());
+
         for(int i =0;i<12;i++) {
 
             onView(withId(R.id.new_add)).perform(click());
@@ -55,7 +57,14 @@ public class EspressoExampleTest {
 
         Thread.sleep(1500);
     }
-
+    @Test
+    public void shouldBeAbleToLaunchMainIcon(){
+        onView(withId(R.id.espresso_example)).perform(click());
+        onView(withId(R.id.new_add)).perform(click());
+        onView(withCompoundDrawable(R.mipmap.ic_launcher_round)).check(matches(isDisplayed()));
+        onView(withId(R.id.simple_text)).check(matches(withCompoundDrawable(R.mipmap.ic_launcher_round)))
+                .check(matches(withText(R.string.test_espresso)));
+    }
     //-open terminal
     //-open uiautomatorviewer
     //path- cd ~/Library/Android/sdk/tools
