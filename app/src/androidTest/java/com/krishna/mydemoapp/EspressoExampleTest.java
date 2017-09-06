@@ -21,6 +21,7 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static com.krishna.mydemoapp.TaskoMatchers.withTaskViewName;
 
 /**
  * Created by parthdesai on 2017-09-04.
@@ -46,10 +47,12 @@ public class EspressoExampleTest {
             onView(withId(R.id.add)).perform(click());
         }
         onView(withText("Foo 1")).check(matches(isDisplayed()));
+//        onView(withId(R.id.recycler_view))
+//                .perform(RecyclerViewActions.scrollToPosition(11));
+//        onView(withText("Foo 11")).check(matches(isDisplayed()));
         onView(withId(R.id.recycler_view))
-                .perform(RecyclerViewActions.scrollToPosition(11));
+                .perform(RecyclerViewActions.scrollTo(withTaskViewName("Foo 10")));
 
-        onView(withText("Foo 11")).check(matches(isDisplayed()));
         Thread.sleep(1500);
     }
 
