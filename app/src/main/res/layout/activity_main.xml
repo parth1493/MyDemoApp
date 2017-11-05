@@ -39,6 +39,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:id="@+id/rxjava_example"
+                android:gravity="center"
+                android:background="@drawable/textview_background"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:text="Rx Android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

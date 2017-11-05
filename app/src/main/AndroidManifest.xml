@@ -21,7 +21,8 @@
         </activity>
         <activity android:name=".example.webapi.WebApiExample" />
         <activity android:name=".example.espresso.EspressoExample" />
-        <activity android:name=".example.espresso.EspressoExampleSecondActivity"></activity>
+        <activity android:name=".example.espresso.EspressoExampleSecondActivity" />
+        <activity android:name=".example.rxjava.RxJavaExample"></activity>
     </application>
 
 </manifest>

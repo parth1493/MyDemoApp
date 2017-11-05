@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.krishna.mydemoapp.example.espresso.EspressoExample;
 import com.krishna.mydemoapp.example.espresso.EspressoModel;
+import com.krishna.mydemoapp.example.rxjava.RxJavaExample;
 import com.krishna.mydemoapp.example.webapi.WebApiExample;
 
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     TextView webApiExample;
-    TextView espressoExmaple;
+    TextView espressoExample;
+    TextView rxExample;
     public static List<EspressoModel> list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +32,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        espressoExmaple.setOnClickListener(new View.OnClickListener() {
+        espressoExample.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), EspressoExample.class);
+                startActivity(intent);
+            }
+        });
+        rxExample.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RxJavaExample.class);
                 startActivity(intent);
             }
         });
@@ -41,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void xmlBinder() {
         webApiExample = (TextView)findViewById(R.id.web_api_example);
-        espressoExmaple = (TextView)findViewById(R.id.espresso_example);
+        espressoExample = (TextView)findViewById(R.id.espresso_example);
+        rxExample = (TextView)findViewById(R.id.rxjava_example);
     }
 }
